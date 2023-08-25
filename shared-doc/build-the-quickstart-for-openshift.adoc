@@ -46,7 +46,14 @@ ifndef::ProductRelease,EAPXPRelease[]
                                 </feature-pack>
                             </feature-packs>
                             <layers>
+ifndef::custom-openshift-layers[]
                                 <layer>cloud-server</layer>
+endif::[]
+ifdef::microprofile-lra[]
+                              <layer>jaxrs-server</layer>
+                              <layer>microprofile-lra-coordinator</layer>
+                              <layer>microprofile-lra-participant</layer>
+endif::[]
                             </layers>
                             <filename>ROOT.war</filename>
                         </configuration>
@@ -85,7 +92,14 @@ ifdef::ProductRelease,EAPXPRelease[]
                                 </feature-pack>
                             </feature-packs>
                             <layers>
+ifndef::custom-openshift-layers[]
                                 <layer>cloud-server</layer>
+endif::[]
+ifdef::microprofile-lra[]
+                              <layer>jaxrs-server</layer>
+                              <layer>microprofile-lra-coordinator</layer>
+                              <layer>microprofile-lra-participant</layer>
+endif::[]
                             </layers>
                             <filename>ROOT.war</filename>
                         </configuration>
