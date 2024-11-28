@@ -46,6 +46,9 @@ public class ThreadRacingIT {
         if (host == null) {
             host = "ws://localhost:8080";
         }
+        System.out.println("==================================");
+        System.out.println("host: " + host);
+        System.out.println("==================================");
         try {
             return new URI(host + "/thread-racing/race");
         } catch (URISyntaxException ex) {
@@ -60,6 +63,9 @@ public class ThreadRacingIT {
         }
         if (host != null) {
             host = host.replaceFirst("http", "ws");
+        }
+        if (host.contains("wss")) {
+            host = host.replaceFirst("wss", "ws");
         }
         return host;
     }
