@@ -1,41 +1,35 @@
 package org.jboss.as.quickstarts.mail;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@RunWith(Arquillian.class)
+@RunAsClient
 public class MailTestCaseIT {
 
     private static final String DEFAULT_SERVER_HOST = "http://localhost:8080";
 
+    @Drone
     private WebDriver driver;
 
     @Before
     public void testSetup() {
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
 
         String serverHost = System.getenv("SERVER_HOST");
         if (serverHost == null) {
@@ -49,12 +43,6 @@ public class MailTestCaseIT {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
     }
 
-    @After
-    public void cleanUp() {
-        if (driver != null) {
-            driver.close();
-        }
-    }
 
     @Test
     public void a_testSMTP() {
