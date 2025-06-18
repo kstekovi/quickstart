@@ -16,6 +16,8 @@ postgresql:
       enabled: false
       runAsUser: "auto"
       runAsGroup: ""
+    persistence:
+      size: 1Gi
 
 
 wildfly:
