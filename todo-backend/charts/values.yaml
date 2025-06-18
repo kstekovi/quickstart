@@ -48,7 +48,7 @@ wildfly:
           value: "96"
       initContainers:
         - name: check-db-ready
-          image: images.paas.redhat.com/it-cloud-ocp-proxy/postgres:latest
+          image: bitnami/postgresql:latest
           command: [ 'sh', '-c',
             'until pg_isready -h todo-backend-postgresql -p 5432; 
                     do echo waiting for database; sleep 2; done;' ]
