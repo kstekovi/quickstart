@@ -1,6 +1,6 @@
 build:
-  uri: https://github.com/wildfly/quickstart.git
-  ref: main
+  uri: https://github.com/kstekovi/quickstart.git
+  ref: WFLY-18768
   contextDir: mail
 deploy:
   replicas: 1
